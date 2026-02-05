@@ -1,6 +1,6 @@
 # eslint-plugin-path-check
 
-plugin to check typescript imports
+Plugin to check feature sliced design paths correctness
 
 ## Installation
 
@@ -10,24 +10,23 @@ You'll first need to install [ESLint](https://eslint.org/):
 npm i eslint --save-dev
 ```
 
-Next, install `eslint-plugin-path-check`:
+Next, install `eslint-plugin-fsd-paths-check`:
 
 ```sh
-npm install eslint-plugin-path-check --save-dev
+npm install eslint-plugin-fsd-paths-check --save-dev
 ```
 
 ## Usage
 
-In your [configuration file](https://eslint.org/docs/latest/use/configure/configuration-files#configuration-file), import the plugin `eslint-plugin-path-check` and add `path-check` to the `plugins` key:
+In your [configuration file](https://eslint.org/docs/latest/use/configure/configuration-files#configuration-file), import the plugin `eslint-plugin-fsd-paths-check` and add `fsd-paths-check` to the `plugins` key:
 
 ```js
 import { defineConfig } from "eslint/config";
-import path-check from "eslint-plugin-path-check";
 
 export default defineConfig([
     {
         plugins: {
-            path-check
+            [`fsd-paths-check`]
         }
     }
 ]);
@@ -38,15 +37,14 @@ Then configure the rules you want to use under the `rules` key.
 
 ```js
 import { defineConfig } from "eslint/config";
-import path-check from "eslint-plugin-path-check";
 
 export default defineConfig([
     {
         plugins: {
-            path-check
+            [`fsd-paths-check`]
         },
         rules: {
-            "path-check/rule-name": "warn"
+            "fsd-paths-check/rule-name": "warn"
         }
     }
 ]);
