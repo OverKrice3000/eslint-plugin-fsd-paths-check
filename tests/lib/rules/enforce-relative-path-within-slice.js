@@ -9,6 +9,9 @@ const ruleTester = new RuleTester({
     sourceType: "module",
   }
 });
+const aliasOptions = [{
+  alias: `@/`
+}];
 ruleTester.run("enforce-relative-path-within-slice", rule, {
   valid: [
     {
@@ -31,9 +34,7 @@ ruleTester.run("enforce-relative-path-within-slice", rule, {
       filename: '/Users/igor/WebstormProjects/ProductionProject/src/entities/Article/model/types/article.ts',
       code: "import { addCommentFormActions } from '@/entities/Article/model/slices/addCommentForm'",
       errors: [{ messageId: "useRelativePathWithinSlice" }],
-      options: [{
-        alias: `@/`
-      }],
+      options: aliasOptions,
       output: "import { addCommentFormActions } from '../slices/addCommentForm'"
     },
     {
@@ -46,9 +47,7 @@ ruleTester.run("enforce-relative-path-within-slice", rule, {
       filename: '/Users/igor/WebstormProjects/ProductionProject/src/entities/Rating/index.ts',
       code: "export { RatingCard } from '@/entities/Rating/ui/RatingCard/RatingCard'",
       errors: [{ messageId: "useRelativePathWithinSlice" }],
-      options: [{
-        alias: `@/`
-      }],
+      options: aliasOptions,
       output: "export { RatingCard } from './ui/RatingCard/RatingCard'"
     },
   ],
