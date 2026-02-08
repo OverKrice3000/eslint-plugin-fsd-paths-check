@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-fsd-paths-check",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Plugin to check feature sliced design paths correctness",
   "keywords": [
     "eslint",

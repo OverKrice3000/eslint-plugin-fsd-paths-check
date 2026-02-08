@@ -14,7 +14,10 @@ ruleTester.run("enforce-relative-path-within-slice", rule, {
     {
       filename: '/Users/igor/WebstormProjects/ProductionProject/src/features/Article/model/types/article.ts',
       code: "import { addCommentFormActions } from 'entities/Article/model/slices/addCommentForm'",
-    }
+    },
+    {
+      code: "const rating = 5; export { rating };",
+    },
   ],
 
   invalid: [
