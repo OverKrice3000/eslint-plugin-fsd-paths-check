@@ -1,27 +1,43 @@
 "use strict";
 
-//------------------------------------------------------------------------------
-// Requirements
-//------------------------------------------------------------------------------
-
 const rule = require("../../../lib/rules/enforce-relative-path-within-slice"),
   RuleTester = require("eslint").RuleTester;
 
-
-//------------------------------------------------------------------------------
-// Tests
-//------------------------------------------------------------------------------
-
-const ruleTester = new RuleTester();
+const ruleTester = new RuleTester({
+  parserOptions: {
+    ecmaVersion: 6,
+    sourceType: "module",
+  }
+});
 ruleTester.run("enforce-relative-path-within-slice", rule, {
   valid: [
-    // give me some code that won't trigger a warning
+    {
+      filename: '/Users/igor/WebstormProjects/ProductionProject/src/features/Article/model/types/article.ts',
+      code: "import { addCommentFormActions } from 'entities/Article/model/slices/addCommentForm'",
+    }
   ],
 
   invalid: [
     {
-      code: "a",
-      errors: [{ messageId: "Fill me in." }],
+      filename: '/Users/igor/WebstormProjects/ProductionProject/src/entities/Article/model/types/article.ts',
+      code: "import { addCommentFormActions } from 'entities/Article/model/slices/addCommentForm'",
+      errors: [{ messageId: "useRelativePathWithinSlice" }],
+      output: "import { addCommentFormActions } from '../slices/addCommentForm'"
+    },
+    {
+      filename: '/Users/igor/WebstormProjects/ProductionProject/src/entities/Article/model/types/article.ts',
+      code: "import { addCommentFormActions } from '@/entities/Article/model/slices/addCommentForm'",
+      errors: [{ messageId: "useRelativePathWithinSlice" }],
+      options: [{
+        alias: `@/`
+      }],
+      output: "import { addCommentFormActions } from '../slices/addCommentForm'"
+    },
+    {
+      filename: '/Users/igor/WebstormProjects/ProductionProject/src/entities/Article/index.ts',
+      code: "import { addCommentFormActions } from 'entities/Article/model/slices/addCommentForm'",
+      errors: [{ messageId: "useRelativePathWithinSlice" }],
+      output: "import { addCommentFormActions } from './model/slices/addCommentForm'"
     },
   ],
 });
