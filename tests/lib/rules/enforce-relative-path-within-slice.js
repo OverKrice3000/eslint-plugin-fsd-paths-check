@@ -39,5 +39,14 @@ ruleTester.run("enforce-relative-path-within-slice", rule, {
       errors: [{ messageId: "useRelativePathWithinSlice" }],
       output: "import { addCommentFormActions } from './model/slices/addCommentForm'"
     },
+    {
+      filename: '/Users/igor/WebstormProjects/ProductionProject/src/entities/Rating/index.ts',
+      code: "export { RatingCard } from '@/entities/Rating/ui/RatingCard/RatingCard'",
+      errors: [{ messageId: "useRelativePathWithinSlice" }],
+      options: [{
+        alias: `@/`
+      }],
+      output: "export { RatingCard } from './ui/RatingCard/RatingCard'"
+    },
   ],
 });
