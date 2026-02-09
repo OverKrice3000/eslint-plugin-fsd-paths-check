@@ -41,6 +41,12 @@ ruleTester.run("enforce-public-api-imports", rule, {
       code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/model/types/article'",
       options: aliasOptions,
       errors: [{ messageId: `doNotUseAbsolutePathInSameModuleImport` }],
+    },
+    {
+      filename: 'C:\\Users\\igor\\WebstormProjects\\ProductionProject\\src\\entities\\Article\\ui\\Article.ts',
+      code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/model/types/article'",
+      options: aliasOptions,
+      errors: [{ messageId: `doNotUseAbsolutePathInSameModuleImport` }],
     }
   ],
 });

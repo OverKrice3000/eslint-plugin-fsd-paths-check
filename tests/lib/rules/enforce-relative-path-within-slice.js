@@ -19,6 +19,10 @@ ruleTester.run("enforce-relative-path-within-slice", rule, {
       code: "import { addCommentFormActions } from 'entities/Article/model/slices/addCommentForm'",
     },
     {
+      filename: 'C:\\Users\\igor\\WebstormProjects\\ProductionProject\\src\\features\\Article\\model\\types\\article.ts',
+      code: "import { addCommentFormActions } from 'entities/Article/model/slices/addCommentForm'",
+    },
+    {
       code: "const rating = 5; export { rating };",
     },
   ],
@@ -26,6 +30,12 @@ ruleTester.run("enforce-relative-path-within-slice", rule, {
   invalid: [
     {
       filename: '/Users/igor/WebstormProjects/ProductionProject/src/entities/Article/model/types/article.ts',
+      code: "import { addCommentFormActions } from 'entities/Article/model/slices/addCommentForm'",
+      errors: [{ messageId: "useRelativePathWithinSlice" }],
+      output: "import { addCommentFormActions } from '../slices/addCommentForm'"
+    },
+    {
+      filename: 'C:\\Users\\igor\\WebstormProjects\\ProductionProject\\src\\entities\\Article\\model\\types\\article.ts',
       code: "import { addCommentFormActions } from 'entities/Article/model/slices/addCommentForm'",
       errors: [{ messageId: "useRelativePathWithinSlice" }],
       output: "import { addCommentFormActions } from '../slices/addCommentForm'"

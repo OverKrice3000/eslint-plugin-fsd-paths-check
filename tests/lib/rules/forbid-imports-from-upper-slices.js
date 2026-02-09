@@ -83,6 +83,11 @@ ruleTester.run("forbid-imports-from-upper-slices", rule, {
       filename: `/Users/igor/WebstormProjects/ProductionProject/config/babel/babelRemovePropsPlugin.ts`,
       code: "import { PluginItem } from '@babel/core'",
       errors: [],
+    },
+    {
+      filename: `C:\\Users\\igor\\WebstormProjects\\ProductionProject\\config\\babel\\babelRemovePropsPlugin.ts`,
+      code: "import { PluginItem } from '@babel/core'",
+      errors: [],
     }
   ],
 
@@ -107,6 +112,12 @@ ruleTester.run("forbid-imports-from-upper-slices", rule, {
     },
     {
       filename: 'C:/Users/tim/Desktop/javascript/production_project/src/entities/providers',
+      code: "export { addCommentFormActions, addCommentFormReducer } from '@/widgets/Article'",
+      errors: [{ messageId: `doNotImportFromUpperFSDLayers`}],
+      options: aliasOptions,
+    },
+    {
+      filename: 'C:\\Users\\tim\\Desktop\\javascript\\production_project\\src\\entities\\providers',
       code: "export { addCommentFormActions, addCommentFormReducer } from '@/widgets/Article'",
       errors: [{ messageId: `doNotImportFromUpperFSDLayers`}],
       options: aliasOptions,
