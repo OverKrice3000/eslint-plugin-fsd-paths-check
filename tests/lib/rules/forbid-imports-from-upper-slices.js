@@ -79,6 +79,11 @@ ruleTester.run("forbid-imports-from-upper-slices", rule, {
       code: "export { Article } from './ui/Article.tsx'",
       errors: [],
     },
+    {
+      filename: `/Users/igor/WebstormProjects/ProductionProject/config/babel/babelRemovePropsPlugin.ts`,
+      code: "import { PluginItem } from '@babel/core'",
+      errors: [],
+    }
   ],
 
   invalid: [
