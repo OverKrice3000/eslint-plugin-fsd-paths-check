@@ -50,5 +50,19 @@ ruleTester.run("enforce-relative-path-within-slice", rule, {
       options: aliasOptions,
       output: "export { RatingCard } from './ui/RatingCard/RatingCard'"
     },
+    {
+      filename: '/Users/igor/WebstormProjects/ProductionProject/src/shared/ui/AppButton/AppButton.tsx',
+      code: "import { useTheme } from '@/shared/utils/theme/useTheme'",
+      errors: [{ messageId: "useRelativePathWithinSlice" }],
+      options: aliasOptions,
+      output: "import { useTheme } from '../../utils/theme/useTheme'"
+    },
+    {
+      filename: '/Users/igor/WebstormProjects/ProductionProject/src/app/Application.tsx',
+      code: "import { ApplicationProvider } from '@/app/providers/ApplicationProvider'",
+      errors: [{ messageId: "useRelativePathWithinSlice" }],
+      options: aliasOptions,
+      output: "import { ApplicationProvider } from './providers/ApplicationProvider'"
+    },
   ],
 });
