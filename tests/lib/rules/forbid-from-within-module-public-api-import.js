@@ -28,5 +28,24 @@ ruleTester.run('fsd-resolve-public-api-imports', rule, {
             filename: `${baseProjectPath}\\entities\\Article\\ui\\Article.ts`,
         },
     ],
-    invalid: []
+    invalid: [
+        // Public API import within same module - should resolve through index.ts
+        {
+            filename: `${baseProjectPath}\\entities\\Article\\ui\\Article.ts`,
+            code: "import { ArticleModel } from '../../'",
+            errors: [{ messageId: 'resolvePublicApiImport' }],
+        },
+        // Deeper nesting
+        {
+            filename: `${baseProjectPath}\\entities\\Article\\ui\\Article\\Article.tsx`,
+            code: "import { ArticleModel } from '../../../'",
+            errors: [{ messageId: 'resolvePublicApiImport' }],
+        },
+        // Multiple imports (uses first one to resolve)
+        {
+            filename: `${baseProjectPath}\\features\\Comment\\ui\\CommentList\\CommentList.tsx`,
+            code: "import { Comment, CommentDto } from '../../../'",
+            errors: [{ messageId: 'resolvePublicApiImport' }],
+        },
+    ],
 });
